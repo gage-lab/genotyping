@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - snakemake>=9.5
+  - bcftools>=1.21
+  - bcftools-gtc2vcf-plugin
+  - gatk4
+  - pandas>=2

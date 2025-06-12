@@ -1,0 +1,5 @@
+.snakemake/*
+.conda/*
+resources/*
+results/*
+run_idat2vcf_all_gage.sh
