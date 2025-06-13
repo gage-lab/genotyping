@@ -7,7 +7,7 @@
 # Install conda environment:
 conda env create -f conda.yaml -p ./.conda
 
-# Download resources
+# Download reference genomes and illumina SNP support files to resources/ directory
 bash download_resources.sh
 ```
 
