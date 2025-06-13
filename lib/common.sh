@@ -112,7 +112,8 @@ activate_conda_env() {
         print_info "Attempting to switch to $conda_env_path environment"
         eval "$(conda shell.bash hook)"
         conda activate $conda_env_path || {
-            print_error "Failed to activate conda environment: $conda_env_path"
+            print_error "Failed to activate conda environment: $conda_env_path."
+            print_error "Please run conda env create -f conda.yaml -p ./.conda"
             exit 1
         }
         print_success "Successfully activated conda environment"

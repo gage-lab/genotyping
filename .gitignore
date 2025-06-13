@@ -1,5 +1,6 @@
 .snakemake/*
 .conda/*
 resources/*
+!resources/chr_mapping.txt
 results/*
 run_idat2vcf_all_gage.sh
