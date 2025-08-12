@@ -47,8 +47,12 @@ rule impute_on_server:
 			chrom=CHROMOSOMES
 		),
 	output:
-		zips = temp(expand(
-			outdir + '/imputed/chr{chrom}.zip',
+		vcfs = temp(expand(
+			outdir + '/imputed/chr{chrom}.dose.vcf.gz',
+			chrom=CHROMOSOMES
+		)),
+		infos = temp(expand(
+			outdir + '/imputed/chr{chrom}.info.gz',
 			chrom=CHROMOSOMES
 		)),
 		qc_report = outdir + "/imputed/qc_report.txt",
@@ -65,31 +69,12 @@ rule impute_on_server:
 	script:
 		"impute_on_server.py"
 
-rule unzip_imputed:
-	input:
-		zips = rules.impute_on_server.output.zips,
-	output:
-		vcf = temp(expand(
-			outdir + '/imputed/chr{chrom}.dose.vcf.gz',
-			chrom=CHROMOSOMES
-		)),
-		info = temp(expand(
-			outdir + '/imputed/chr{chrom}.info.gz',
-			chrom=CHROMOSOMES
-		)),
-	log:
-		outdir + "/unzip_imputed.log"
-	shell:
-		"""
-		outdir=$(dirname {output.vcf[0]})
-		unzip -o {input.zips} -d $outdir
-		"""
-
 rule concat_imputed:
 	input:
-		vcf = rules.impute_on_server.output.vcf
-		zips = rules.impute_on_server.output.zips,
-		info = rules.impute_on_server.output.info,
+		vcf = expand(
+			outdir + '/imputed/chr{chrom}.dose.vcf.gz',
+			chrom=CHROMOSOMES
+		)
 	output:
 		unsorted_vcf = temp(outdir + "/imputed/unsorted.vcf.gz"),
 		sorted_vcf = outdir + "/genotypes_imputed.vcf.gz"

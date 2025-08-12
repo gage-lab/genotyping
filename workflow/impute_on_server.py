@@ -254,6 +254,12 @@ class ImputationClient:
                 # Download file
                 download_url = base_url.format(**file_data)
                 urlretrieve(download_url, dest)
+
+                if file_data["name"].endswith(".zip"):
+                    self.logger.info(f"🔓 Unzipping {file_data['name']}")
+                    with ZipFile(dest) as zip_ref:
+                        zip_ref.extractall(dest.parent, pwd=password.encode("utf-8"))
+                    dest.unlink()
                 
                 self.logger.info(f"✅ Finished downloading {file_data['name']}")
 
@@ -305,7 +311,7 @@ if __name__ == "__main__":
 
     # Log workflow startup information
     logger.info("🚀 Starting imputation workflow")
-    output_dir = Path(snakemake.output.vcf[0]).parent
+    output_dir = Path(snakemake.output.qc_report).parent
     logger.info(f"Output directory: {output_dir}")
 
     try:
