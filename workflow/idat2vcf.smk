@@ -21,7 +21,7 @@ rule idat2gtc:
     output:
         green_idats=temp(outdir + "/green_idats.txt"),
         red_idats=temp(outdir + "/red_idats.txt"),
-        outdir=temp(directory(outdir + "/gtc")),
+        outdir=directory(outdir + "/gtc"),
         outfiles=temp(expand(outdir + "/gtc/{sample}.gtc", sample=samples["sentrix_id"])),
     params:
         **array_config,
