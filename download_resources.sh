@@ -33,6 +33,8 @@ mkdir -p illumina_array_support && cd illumina_array_support
 files=(
 	"https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/global-screening-array-24/v3-0/GSA-24v3-0-A2-manifest-file-csv.zip"
 	"https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/global-screening-array-24/v3-0/GSA-24v3-0-A2-manifest-file-bpm.zip"
+	"https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/global-screening-array-24/v3-0/GSA-24v3-0-A1-manifest-file-csv.zip"
+	"https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/global-screening-array-24/v3-0/GSA-24v3-0-A1-manifest-file-bpm.zip"
 	"https://support.illumina.com/content/dam/illumina-support/documents/downloads/productfiles/global-screening-array-24/v3-0/GSA-24v3-0-A1-cluster-file.zip"
 	"https://webdata.illumina.com/downloads/productfiles/humancoreexome/24-v1-4/InfiniumCoreExome-24v1-4_A1-csv.zip"
 	"https://webdata.illumina.com/downloads/productfiles/humancoreexome/24-v1-4/InfiniumCoreExome-24v1-4_A1-bpm.zip"

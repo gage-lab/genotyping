@@ -9,6 +9,12 @@ ARRAY_CONFIG = {
         "csv_manifest_file": "resources/illumina_array_support/GSA-24v3-0_A2.csv",
         "ref": "resources/Homo_sapiens_assembly38.fasta",
     },
+    "GSA-24v3-0_A1": {
+        "bpm_manifest_file": "resources/illumina_array_support/GSA-24v3-0_A1.bpm",
+        "egt_cluster_file": "resources/illumina_array_support/GSA-24v3-0_A1_ClusterFile.egt",
+        "csv_manifest_file": "resources/illumina_array_support/GSA-24v3-0_A1.csv",
+        "ref": "resources/Homo_sapiens_assembly19.fasta",
+    },
     "InfiniumCoreExome-24v1-4_A1": {
         "bpm_manifest_file": "resources/illumina_array_support/InfiniumCoreExome-24v1-4_A1.bpm",
         "egt_cluster_file": "resources/illumina_array_support/InfiniumCoreExome-24v1-4_A1_ClusterFile.egt",
@@ -45,6 +51,8 @@ def read_samplesheet(igm_dir: str) -> tuple[pd.DataFrame, dict]:
         dtype={"SentrixBarcode_A": str, "SentrixPosition_A": str},
         skiprows=22,
     )
+    # remove rows that are all NA
+    samples = samples.dropna(how="all")
     samples["sentrix_id"] = (
         samples["SentrixBarcode_A"] + "_" + samples["SentrixPosition_A"]
     )
